@@ -86,45 +86,8 @@ public class ContatosTest extends BaseTest implements UtilsDados, ContatosProps 
 
     @Test
     @Feature("Arquivo Contatos")
-    @Description("Valida o campo 'Tipo Contato' nas linhas contidas no filler")
+    @Description("Valida se os contatos gerados estão correspondentes com os contatos esperados")
     @Severity(SeverityLevel.CRITICAL)
-    public void testCampoTipoContatoFiller() {
-        contatosActions.validarCampoTipoContato();
-    }
-
-    @Test
-    @Feature("Arquivo Contatos")
-    @Description("Valida o campo 'Nome do Contato' nas linhas contidas no filler")
-    @Severity(SeverityLevel.CRITICAL)
-    public void testCampoNomeFiller() {
-        contatosActions.validarCampoNome();
-    }
-
-    @Test
-    @Feature("Arquivo Contatos")
-    @Description("Valida o campo 'Cargo' nas linhas contidas no filler")
-    @Severity(SeverityLevel.CRITICAL)
-    public void testCampoCargoFiller() {
-        contatosActions.validarCampoCargo();
-    }
-
-    @Test
-    @Feature("Arquivo Contatos")
-    @Description("Valida o campo 'Numero de Telefone' nas linhas contidas no filler")
-    @Severity(SeverityLevel.CRITICAL)
-    public void testCampoNumeroTelefoneFiller()  {
-        contatosActions.validarCampoNumeroTelefone();
-    }
-
-    @Test
-    @Feature("Arquivo Contatos")
-    @Description("Valida o campo 'Email' nas linhas contidas no filler")
-    @Severity(SeverityLevel.CRITICAL)
-    public void testCampoEmailFiller() {
-        contatosActions.validarCampoEmail();
-    }
-
-    @Test
     public void testeMetodoNovo() {
         contatosActions.validarContatos();
     }

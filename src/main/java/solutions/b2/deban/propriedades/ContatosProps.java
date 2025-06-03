@@ -1,18 +1,13 @@
 package solutions.b2.deban.propriedades;
 
-import java.util.List;
-
 public interface ContatosProps {
 
     String contatosNomeArq = "CONTATOS.txt";
 
-    List<String>numTelefone = List.of("(34) 3256 - 7290", "(34) 3256 - 7290","", "(34) 3256 - 7290");
-    List<String>nomes = List.of("Monica Yukari Fukazawa Kitahara","Monica Yukari Fukazawa Kitahara", "", "Kenia Ferreira Alves");
-    List<String>cargos = List.of("DIRETOR","DIRETOR", "", "Analista");
-    List<String>emails = List.of("monicak@tribanco.com.br","monicak@tribanco.com.br", "fiscal@tribanco.com.br", "keniaf@tribanco.com.br");
-    List<String> tipoContato = List.of("D","T", "I", "T");
-
+    String[] tipoContatoEsperados = {"D", "T", "I"};
+    String[] nomesEsperados = {"Monica Yukari Fukazawa Kitahara", "Kenia Ferreira Alves"};
+    String[] cargosEsperados = {"DIRETOR", "Analista"};
+    String[] telefonesEsperados = {"(34) 3256 - 7290"};
+    String[] emailsEsperados = {"monicak@tribanco.com.br", "keniaf@tribanco.com.br", "fiscal@tribanco.com.br"};
     int contatosQtdLinhasFiller = 206;
-
-
 }

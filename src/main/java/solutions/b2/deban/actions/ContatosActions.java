@@ -1,6 +1,7 @@
 package solutions.b2.deban.actions;
 
 import solutions.b2.deban.propriedades.ContatosProps;
+import solutions.b2.deban.utils.Contato;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,45 +9,49 @@ import static solutions.b2.deban.utils.Utils.*;
 
 public class ContatosActions implements ContatosProps {
 
-    public void validarCampoTipoContato() {
-        List<String> dados = new ArrayList<>(getDadosFiller(contatosNomeArq,5, 6));
-        List<String> dadosEsperados = new ArrayList<>(tipoContato);
+    public void validarContatos() {
+        List<Contato> contatosAtual = new ArrayList<>();
 
-        assertEquals(dadosEsperados, dados);
+        for (int i=1; i<=getNumLinhasFiller(contatosNomeArq);i++) {
+            String tipoContato = getDado(i, 5,6);
+            String nome = getDado(i, 6,56);
+            String cargo = getDado(i, 56,106);
+            String telefone = getDado(i, 106, 156);
+            String email = getDado(i,156,206 );
+
+            Contato contato = new Contato(tipoContato, nome, cargo, telefone, email);
+            contatosAtual.add(contato);
+        }
+
+        List<Contato> contatosEsperado = getContatos();
+
+        assertEquals(contatosEsperado.size(), contatosAtual.size(), "Quantidade de contatos divergente");
+
+        for (int i = 0; i < contatosEsperado.size(); i++) {
+            Contato esperado = contatosEsperado.get(i);
+            Contato atual = contatosAtual.get(i);
+
+            assertEquals(esperado.tipoContato(), atual.tipoContato(), "Erro no tipoContato do contato " + i);
+            assertEquals(esperado.nome(), atual.nome(), "Erro no nome do contato " + i);
+            assertEquals(esperado.cargo(), atual.cargo(), "Erro no cargo do contato " + i);
+            assertEquals(esperado.telefone(), atual.telefone(), "Erro no telefone do contato " + i);
+            assertEquals(esperado.email(), atual.email(), "Erro no email do contato " + i);
+        }
     }
 
-    public void validarCampoNome() {
-        List<String> dados = getDadosFiller(contatosNomeArq,6, 56);
-        List<String> dadosEsperados = new ArrayList<>(nomes);
-
-        assertEquals(dadosEsperados, dados);
-    }
-
-    public void validarCampoCargo() {
-        List<String> dados = getDadosFiller(contatosNomeArq,56, 106);
-        List<String> dadosEsperados = new ArrayList<>(cargos);
-
-        assertEquals(dadosEsperados, dados);
-    }
-
-    public void validarCampoNumeroTelefone() {
-        List<String> dados = getDadosFiller(contatosNomeArq,106, 156);
-        List<String> dadosEsperados = new ArrayList<>(numTelefone);
-
-        assertEquals(dadosEsperados, dados);
-    }
-
-    public void validarCampoEmail() {
-        List<String> dados = getDadosFiller(contatosNomeArq,156, 192);
-        List<String> dadosEsperados = new ArrayList<>(emails);
-
-        assertEquals(dadosEsperados, dados);
+    private static List<Contato> getContatos() {
+        List<Contato> contatosEsperado = new ArrayList<>();
+        contatosEsperado.add(new Contato(tipoContatoEsperados[0], nomesEsperados[0], cargosEsperados[0], telefonesEsperados[0], emailsEsperados[0]));
+        contatosEsperado.add(new Contato(tipoContatoEsperados[1], nomesEsperados[0], cargosEsperados[0], telefonesEsperados[0], emailsEsperados[0]));
+        contatosEsperado.add(new Contato(tipoContatoEsperados[2], "", "", "", emailsEsperados[2]));
+        contatosEsperado.add(new Contato(tipoContatoEsperados[1], nomesEsperados[1], cargosEsperados[1], telefonesEsperados[0], emailsEsperados[1]));
+        return contatosEsperado;
     }
 
     public void validarQtdDePosicoesLinhasFillerContatos() {
         int qtdLinhasFiller = getNumLinhasFiller(contatosNomeArq);
 
-        for (int i=1; i<=qtdLinhasFiller; i++) {
+        for (int i = 1; i <= qtdLinhasFiller; i++) {
             int tamanhoLinha = getLinha(contatosNomeArq, i).length();
 
             if (tamanhoLinha > contatosQtdLinhasFiller) {
@@ -55,7 +60,7 @@ public class ContatosActions implements ContatosProps {
         }
     }
 
-    public void validarContatos() {
-
+    private String getDado(int linha, int inicio, int fim) {
+        return getLinha(contatosNomeArq, linha).substring(inicio,fim).trim();
     }
 }
