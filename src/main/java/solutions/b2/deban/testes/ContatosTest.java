@@ -123,4 +123,9 @@ public class ContatosTest extends BaseTest implements UtilsDados, ContatosProps 
     public void testCampoEmailFiller() {
         contatosActions.validarCampoEmail();
     }
+
+    @Test
+    public void testeMetodoNovo() {
+        contatosActions.validarContatos();
+    }
 }
