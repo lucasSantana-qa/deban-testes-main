@@ -12,8 +12,8 @@ import static solutions.b2.deban.utils.Utils.*;
 public class ApresentadorDados {
     public static void main(String[] args) {
         apresentarVolumesConcDescInterc();
-        apresentarVolumesLucrcred();
         apresentarVolumesRanking();
+        apresentarVolumesLucrcred();
     }
 
     private static void apresentarVolumesConcDescInterc() {
@@ -25,16 +25,16 @@ public class ApresentadorDados {
         Integer volumeDescontoQtd = getVolumeQtdTransacoes(descontoNomeArq, 45, 57);
         Integer volumeIntercamQtd = getVolumeQtdTransacoes(intercamNomeArq, 36, 48);
 
-        String conccTrnFormatado = formatarValorMoeda(volumeConccredTrn);
-        String descTrnFormatado = formatarValorMoeda(volumeDescontoTrn);
-        String intercTrnFormatado = formatarValorMoeda(volumeIntercamTrn);
+//        String conccTrnFormatado = formatarValorMoeda(volumeConccredTrn);
+//        String descTrnFormatado = formatarValorMoeda(volumeDescontoTrn);
+//        String intercTrnFormatado = formatarValorMoeda(volumeIntercamTrn);
+//
+//        String conccQtdFormatado = formatarInteiro(volumeConccredQtd);
+//        String descQtdFormatado = formatarInteiro(volumeDescontoQtd);
+//        String intercQtdFormatado = formatarInteiro(volumeIntercamQtd);
 
-        String conccQtdFormatado = formatarInteiro(volumeConccredQtd);
-        String descQtdFormatado = formatarInteiro(volumeDescontoQtd);
-        String intercQtdFormatado = formatarInteiro(volumeIntercamQtd);
-
-        System.out.printf("Volumes Conccred, Desconto, intercam: \nConccred: %s | %s\nDesconto: %s | %s\nIntercam: %s | %s\n------------------------------------------------- \n",
-                conccTrnFormatado, conccQtdFormatado, descTrnFormatado, descQtdFormatado, intercTrnFormatado, intercQtdFormatado);
+        System.out.printf("DADOS PARA O GOOGLE COLAB\n\nVolumes Conccred, Desconto, intercam: \nValor: [%s, %s, %s]\nQuantidade: [%s, %s, %s]\n-------------------------------------------------\n",
+                volumeConccredTrn, volumeDescontoTrn, volumeIntercamTrn, volumeConccredQtd, volumeDescontoQtd, volumeIntercamQtd);
     }
 
     private static void apresentarVolumesLucrcred() {
@@ -43,19 +43,19 @@ public class ApresentadorDados {
         BigDecimal receitaTaxaDescontoBruta = new BigDecimal(linha.substring(5, 17).replaceFirst("(\\d+)(\\d{2})$", "$1.$2"));
         BigDecimal custoTaxaIntercambio = new BigDecimal(linha.substring(41, 53).replaceFirst("(\\d+)(\\d{2})$", "$1.$2"));
 
-        String descontoFormatado = formatarValorMoeda(receitaTaxaDescontoBruta);
-        String intercambioFormatado = formatarValorMoeda(custoTaxaIntercambio);
+//        String descontoFormatado = formatarValorMoeda(receitaTaxaDescontoBruta);
+//        String intercambioFormatado = formatarValorMoeda(custoTaxaIntercambio);
 
-        System.out.printf("Volumes Lucrcred: \nReceita taxa de desconto: %s \nCusto tarifa de intercâmbio: %s\n------------------------------------------------- \n", descontoFormatado, intercambioFormatado);
+        System.out.printf("Volumes Lucrcred - Receita taxa de desconto, Custo tarifa de intercâmbio\n[%s, %s]", receitaTaxaDescontoBruta, custoTaxaIntercambio);
     }
 
     private static void apresentarVolumesRanking() {
         BigDecimal volumeRankVlr = getVolumeValorTransacao(rankingNomeArq, 22,37);
         Integer volumeRankQtd = getVolumeQtdTransacoes(rankingNomeArq,37,49);
 
-        String rankVlrFormatado = formatarValorMoeda(volumeRankVlr);
-        String rankQtdFormatado = formatarInteiro(volumeRankQtd);
+//        String rankVlrFormatado = formatarValorMoeda(volumeRankVlr);
+//        String rankQtdFormatado = formatarInteiro(volumeRankQtd);
 
-        System.out.printf("Volumes Ranking: \n%s | %s", rankVlrFormatado, rankQtdFormatado);
+        System.out.printf("Volumes Ranking: \nValor: %s\nQuantidade: %s\n-------------------------------------------------\n", volumeRankVlr, volumeRankQtd);
     }
 }
