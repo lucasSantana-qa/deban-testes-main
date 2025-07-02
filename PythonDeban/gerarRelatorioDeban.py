@@ -131,7 +131,6 @@ def gerar_excel_com_grafico(dados):
             falha_sheet.write(row, 3, item['erro'], wrap_format)
 
     workbook.close()
-    print(f'Excel gerado com gráfico e falhas detalhadas: {EXCEL_REPORT_PATH}')
 
 if __name__ == '__main__':
     dados = extrair_dados()

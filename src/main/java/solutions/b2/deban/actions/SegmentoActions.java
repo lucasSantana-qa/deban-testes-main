@@ -33,4 +33,17 @@ public class SegmentoActions implements SegmentoProps {
             }
         }
     }
+
+    public void validarNomeSegmento() {
+        List<String> linhas = getDadosFiller(segmentoNomeArq, 0, 303);
+
+        for (String linha : linhas) {
+            String nomeSegmento = linha.substring(0,50).trim();
+            Assertions.assertTrue(existeNome(nomeSegmento), "Nome de segmento incorreto: " + nomeSegmento);
+        }
+    }
+
+    private static boolean existeNome(String nome) {
+        return getSegmentosEsperados().stream().anyMatch(segmento -> segmento.nome().equals(nome));
+    }
 }

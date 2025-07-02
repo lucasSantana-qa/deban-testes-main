@@ -3,10 +3,8 @@ package solutions.b2.deban.base;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.TestInfo;
-import solutions.b2.deban.base.ConfigTrimestre;
 
 import java.io.File;
-import java.io.IOException;
 
 import static solutions.b2.deban.base.ConfigTrimestre.trimestre;
 

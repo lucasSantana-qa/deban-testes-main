@@ -73,4 +73,12 @@ public class SegmentoTest implements SegmentoProps, UtilsDados {
     public void testSegmentosFiller() {
         segmentoActions.validarSegmentos();
     }
+
+    @Test
+    @Feature("Arquivo Segmento")
+    @Description("Valida se os segmentos apresentados no arquivo estão com os nomes corretos")
+    @Severity(SeverityLevel.CRITICAL)
+    public void testCampoNomeSegmentoFiller() {
+        segmentoActions.validarNomeSegmento();
+    }
 }
