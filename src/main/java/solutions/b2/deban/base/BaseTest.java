@@ -6,14 +6,11 @@ import org.junit.jupiter.api.TestInfo;
 
 import java.io.File;
 
-import static solutions.b2.deban.base.ConfigTrimestre.trimestre;
-
 public class BaseTest {
 
     @BeforeAll
     public static void setupTrimestre(TestInfo info) {
         System.out.println("Iniciando testes: " + info.getDisplayName());
-        trimestre = ConfigTrimestre.TrimestreEnum.primeiro;
     }
 
     @AfterAll
