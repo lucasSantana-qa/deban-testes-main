@@ -1,24 +1,17 @@
 package solutions.b2.deban.base;
 
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.TestInfo;
 
 import java.io.File;
 
 public class BaseTest {
 
-    @BeforeAll
-    public static void setupTrimestre(TestInfo info) {
-        System.out.println("Iniciando testes: " + info.getDisplayName());
-    }
-
     @AfterAll
-    public static void teardown() {
+    public static void teardown() throws Exception {
         gerarRelatorioExcel();
     }
 
-    private static void gerarRelatorioExcel() {
+    private static void gerarRelatorioExcel() throws Exception {
         try {
             ProcessBuilder pb = new ProcessBuilder("python", "PythonDeban/gerarRelatorioDeban.py");
             pb.directory(new File(System.getProperty("user.dir")));
@@ -33,7 +26,7 @@ public class BaseTest {
                 System.out.println("Relatório Excel gerado com sucesso.");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new Exception();
         }
     }
 
