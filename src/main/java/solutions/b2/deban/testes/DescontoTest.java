@@ -153,7 +153,7 @@ public class DescontoTest extends BaseTest implements DescontoProps, UtilsDados 
     @Description("Valida se no campo 'Valor das transações' não foi gerado registro com valor igual a 0")
     @Severity(SeverityLevel.BLOCKER)
     public void testCampoValorTransacaoFiller() {
-        validarCampoValorTransacaoDiferenteDeZero(descontoNomeArq, 22,37);
+        validarCampoValorTransacaoDiferenteDeZero(descontoNomeArq, 30,45);
     }
 
     @Test
@@ -161,6 +161,6 @@ public class DescontoTest extends BaseTest implements DescontoProps, UtilsDados 
     @Description("Valida se no campo 'Quantidade de transações' não foi gerado registro com valor igual a 0")
     @Severity(SeverityLevel.BLOCKER)
     public void testCampoQuantidadeTransacaoFiller() {
-        validarCampoQuantidadeTransacaoDiferenteDeZero(descontoNomeArq, 37,49);
+        validarCampoQuantidadeTransacaoDiferenteDeZero(descontoNomeArq, 45,57);
     }
 }
