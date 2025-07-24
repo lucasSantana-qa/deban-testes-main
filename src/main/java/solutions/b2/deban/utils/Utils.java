@@ -118,8 +118,7 @@ public class Utils implements UtilsDados {
         Path caminho = Paths.get(caminhoArquivos + nomeArq);
 
         try (BufferedReader reader = Files.newBufferedReader(caminho, StandardCharsets.ISO_8859_1)) {
-            String linha = reader.readLine();
-            while ((linha = reader.readLine()) != null) {
+            while ((reader.readLine()) != null) {
                 contador++;
             }
         } catch (IOException e) {
@@ -233,19 +232,22 @@ public class Utils implements UtilsDados {
 
     public static void validarCampoValorTransacaoDiferenteDeZero(String nomeArq, int inicio, int fim) {
         List<String> dados = getDadosFiller(nomeArq, inicio,fim);
+        int i = 1;
 
         for (String dado : dados) {
-            long dadoInt = Long.parseLong(dado);
-            assertNotEquals(0, dadoInt, "Foi reportado registro com valor transação igual a 0");
+            assertNotEquals("000000000000000", dado, "Foi reportado registro com valor transação igual a 0 na linha " + i);
+            i+=1;
         }
     }
 
     public static void validarCampoQuantidadeTransacaoDiferenteDeZero(String nomeArq, int inicio, int fim) {
         List<String> dados = getDadosFiller(nomeArq, inicio,fim);
+        int i = 1;
 
         for (String dado : dados) {
             long dadoInt = Long.parseLong(dado);
-            assertNotEquals(0, dadoInt, "Foi reportado registro com quantidade de transação igual a 0");
+            assertNotEquals(0, dadoInt, "Foi reportado registro com quantidade de transação igual a 0 na linha " + i);
+            i+=1;
         }
     }
 
