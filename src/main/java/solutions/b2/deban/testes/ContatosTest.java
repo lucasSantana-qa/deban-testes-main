@@ -88,7 +88,7 @@ public class ContatosTest extends BaseTest implements UtilsDados, ContatosProps 
     @Feature("Arquivo Contatos")
     @Description("Valida se os contatos gerados estão correspondentes com os contatos esperados")
     @Severity(SeverityLevel.CRITICAL)
-    public void testeMetodoNovo() {
+    public void testeValidaContatos() {
         contatosActions.validarContatos();
     }
 }
