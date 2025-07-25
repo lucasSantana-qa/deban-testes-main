@@ -20,6 +20,15 @@
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>clean-allure-results</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <filesets>
                         <fileset>
@@ -41,7 +50,7 @@
                 <executions>
                     <execution>
                         <id>copy-history</id>
-                        <phase>process-test-resources</phase>
+                        <phase>pre-clean</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
@@ -49,7 +58,22 @@
                             <target>
                                 <mkdir dir="${project.basedir}/allure-results/history"/>
                                 <copy todir="${project.basedir}/allure-results/history" overwrite="true" failonerror="false">
-                                    <fileset dir="${project.basedir}/allure-report/history" erroronmissingdir="false"/>
+                                    <fileset dir="${project.basedir}/allure-history" erroronmissingdir="false"/>
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>save-new-history</id>
+                        <phase>pre-clean</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <mkdir dir="${project.basedir}/allure-history"/>
+                                <copy todir="${project.basedir}/allure-history" overwrite="true" failonerror="false">
+                                    <fileset dir="${project.build.directory}/allure-report/history" erroronmissingdir="false"/>
                                 </copy>
                             </target>
                         </configuration>
@@ -62,12 +86,12 @@
                 <version>2.11.2</version>
                 <configuration>
                     <resultsDirectory>${project.basedir}/allure-results</resultsDirectory>
-                    <reportDirectory>${project.basedir}/allure-report</reportDirectory>
+                    <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
                 </configuration>
                 <executions>
                     <execution>
                         <id>allure-report</id>
-                        <phase>verify</phase>
+                        <phase>initialize</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
@@ -77,7 +101,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.5.2</version>
                 <configuration>
                     <includes>solutions/b2/deban/testes/*.java</includes>
                     <parallel>all</parallel>

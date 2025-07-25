@@ -3,7 +3,7 @@ package solutions.b2.deban.actions;
 import solutions.b2.deban.propriedades.DatabaseProps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static solutions.b2.deban.base.ConfigTrimestre.trimestre;
+import static solutions.b2.deban.base.SetData.getTrimestre;
 
 public class DatabaseActions implements DatabaseProps {
 
@@ -12,7 +12,7 @@ public class DatabaseActions implements DatabaseProps {
     }
 
     public void validarCampoDataBase(String mes) {
-        switch (trimestre) {
+        switch (getTrimestre()) {
             case primeiro:
                 assertEquals("03", mes);
                 break;

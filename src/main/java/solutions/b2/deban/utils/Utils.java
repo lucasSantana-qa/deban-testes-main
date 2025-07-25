@@ -1,6 +1,8 @@
 package solutions.b2.deban.utils;
 
 import solutions.b2.deban.base.BaseTest;
+import solutions.b2.deban.base.SetData;
+
 import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -18,7 +20,7 @@ import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static solutions.b2.deban.base.ConfigCaminhoArquivos.getCaminhoArquivos;
-import static solutions.b2.deban.base.ConfigTrimestre.*;
+import static solutions.b2.deban.base.SetData.*;
 
 public class Utils implements UtilsDados {
 
@@ -149,14 +151,14 @@ public class Utils implements UtilsDados {
         List<String> dados = getDadosFiller(nomeArq, 0, 4);
 
         for (String dado : dados) {
-            assertEquals(BaseTest.anoReferencia, dado);
+            assertEquals(SetData.anoReferencia, dado);
         }
     }
 
     public static void validarCampoTrimestre(String nomeArq) {
         List<String> dados = getDadosFiller(nomeArq, 4, 5);
 
-        String trimEsperado = switch (trimestre) {
+        String trimEsperado = switch (getTrimestre()) {
             case primeiro -> "1";
             case segundo -> "2";
             case terceiro -> "3";
