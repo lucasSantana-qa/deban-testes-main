@@ -6,7 +6,6 @@ import java.util.stream.IntStream;
 
 public interface UtilsDados {
 
-    String anoReferencia = "2025";
     String cnpjCredenciador = "17351180";
 
     Set<String> bandeiras = Set.of("01", "02", "08");

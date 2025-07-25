@@ -1,5 +1,6 @@
 package solutions.b2.deban.utils;
 
+import solutions.b2.deban.base.BaseTest;
 import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -16,15 +17,14 @@ import java.util.List;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static solutions.b2.deban.base.ConfigCaminhoArquivos.getCaminhoArquivos;
 import static solutions.b2.deban.base.ConfigTrimestre.*;
 
 public class Utils implements UtilsDados {
 
-    private static final String caminhoArquivos = "C:\\Testes automatizados\\DEBAN\\arquivos_deban\\";
-
     public static String getLinha(String nomeArq, int linhaDesejada) {
         try (BufferedReader br = new BufferedReader(new InputStreamReader
-                (new FileInputStream(caminhoArquivos + nomeArq), StandardCharsets.ISO_8859_1))) {
+                (new FileInputStream(getCaminhoArquivos() + nomeArq), StandardCharsets.ISO_8859_1))) {
             int atual = 0;
             String linha;
             while ((linha = br.readLine()) != null) {
@@ -89,7 +89,7 @@ public class Utils implements UtilsDados {
 
     public static List<String> getDadosFiller(String nomeArq, int inicio, int fim) {
         List<String> dados = new ArrayList<>();
-        Path caminho = Paths.get(caminhoArquivos + nomeArq);
+        Path caminho = Paths.get(getCaminhoArquivos() + nomeArq);
 
         try (BufferedReader reader = Files.newBufferedReader(caminho, StandardCharsets.ISO_8859_1)) {
             String linha;
@@ -115,10 +115,11 @@ public class Utils implements UtilsDados {
 
     public static int getNumLinhasFiller(String nomeArq) {
         int contador = 0;
-        Path caminho = Paths.get(caminhoArquivos + nomeArq);
+        Path caminho = Paths.get(getCaminhoArquivos() + nomeArq);
 
         try (BufferedReader reader = Files.newBufferedReader(caminho, StandardCharsets.ISO_8859_1)) {
-            while ((reader.readLine()) != null) {
+            String linha = reader.readLine();
+            while ((linha = reader.readLine()) != null) {
                 contador++;
             }
         } catch (IOException e) {
@@ -148,7 +149,7 @@ public class Utils implements UtilsDados {
         List<String> dados = getDadosFiller(nomeArq, 0, 4);
 
         for (String dado : dados) {
-            assertEquals(anoReferencia, dado);
+            assertEquals(BaseTest.anoReferencia, dado);
         }
     }
 
