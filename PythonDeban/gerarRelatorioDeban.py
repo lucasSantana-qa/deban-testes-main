@@ -3,7 +3,7 @@ import json
 import xlsxwriter
 from collections import defaultdict
 
-ALLURE_RESULTS_DIR = 'C:\\Testes automatizados\\DEBAN-TESTES\\allure-results'
+ALLURE_RESULTS_DIR = 'C:\\Testes automatizados\\DEBAN\\DEBAN-TESTES-MAIN\\allure-results'
 EXCEL_REPORT_PATH = 'C:\\Testes automatizados\\DEBAN\\relatorios\\relatorio-testes.xlsx'
 
 workbook = xlsxwriter.Workbook(EXCEL_REPORT_PATH)
@@ -12,7 +12,7 @@ wrap_format = workbook.add_format({'text_wrap': True, 'border': 1})
 cell_format = workbook.add_format({'border': 1})
 
 def extrair_dados():
-    dados = []
+    dadosteste = []
     for filename in os.listdir(ALLURE_RESULTS_DIR):
         if filename.endswith('-result.json'):
             with open(os.path.join(ALLURE_RESULTS_DIR, filename), encoding='utf-8') as f:
@@ -34,7 +34,7 @@ def extrair_dados():
                 if status == 'failed':
                     erro = json_data.get('statusDetails', {}).get('message', '').replace('\n', ' ').strip()
 
-                dados.append({
+                dadosteste.append({
                     'feature': feature.strip().replace('\n', ' ').replace('"', "'"),
                     'nome': nome.strip().replace('\n', ' ').replace('"', "'"),
                     'descricao': descricao.strip().replace('\n', ' ').replace('"', "'"),
@@ -42,7 +42,7 @@ def extrair_dados():
                     'erro': erro,
                     'severity': severity.strip()
                 })
-    return dados
+    return dadosteste
 
 def gerar_excel_com_grafico(dados):
     # Agrupar por status e severity
