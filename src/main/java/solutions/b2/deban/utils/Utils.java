@@ -1,12 +1,10 @@
 package solutions.b2.deban.utils;
 
-import solutions.b2.deban.base.BaseTest;
 import solutions.b2.deban.base.SetData;
 
 import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -26,7 +24,7 @@ public class Utils implements UtilsDados {
 
     public static String getLinha(String nomeArq, int linhaDesejada) {
         try (BufferedReader br = new BufferedReader(new InputStreamReader
-                (new FileInputStream(getCaminhoArquivos() + nomeArq), StandardCharsets.ISO_8859_1))) {
+                (new FileInputStream(getCaminhoArquivos() + nomeArq), formatoArq))) {
             int atual = 0;
             String linha;
             while ((linha = br.readLine()) != null) {
@@ -93,7 +91,7 @@ public class Utils implements UtilsDados {
         List<String> dados = new ArrayList<>();
         Path caminho = Paths.get(getCaminhoArquivos() + nomeArq);
 
-        try (BufferedReader reader = Files.newBufferedReader(caminho, StandardCharsets.ISO_8859_1)) {
+        try (BufferedReader reader = Files.newBufferedReader(caminho, formatoArq)) {
             String linha;
             boolean primeiraLinha = true;
 
@@ -119,7 +117,7 @@ public class Utils implements UtilsDados {
         int contador = 0;
         Path caminho = Paths.get(getCaminhoArquivos() + nomeArq);
 
-        try (BufferedReader reader = Files.newBufferedReader(caminho, StandardCharsets.ISO_8859_1)) {
+        try (BufferedReader reader = Files.newBufferedReader(caminho, formatoArq)) {
             String linha = reader.readLine();
             while ((linha = reader.readLine()) != null) {
                 contador++;
