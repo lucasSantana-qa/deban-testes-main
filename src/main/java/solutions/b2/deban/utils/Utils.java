@@ -1,5 +1,10 @@
 package solutions.b2.deban.utils;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import solutions.b2.deban.base.SetData;
 
 import java.io.*;
@@ -89,11 +94,13 @@ public class Utils implements UtilsDados {
 
     public static List<String> getDadosFiller(String nomeArq, int inicio, int fim) {
         List<String> dados = new ArrayList<>();
-        Path caminho = Paths.get(getCaminhoArquivos() + nomeArq);
+        String caminho = getCaminhoArquivos() + nomeArq;
 
-        try (BufferedReader reader = Files.newBufferedReader(caminho, formatoArq)) {
-            String linha;
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(new FileInputStream(caminho), formatoArq))) {
+
             boolean primeiraLinha = true;
+            String linha;
 
             while ((linha = reader.readLine()) != null) {
                 if (primeiraLinha) {
@@ -264,6 +271,23 @@ public class Utils implements UtilsDados {
         } catch (DateTimeParseException e) {
             fail("A data nao pode ser parseada no formato yyyyMMdd -> " + e.getMessage());
         }
+    }
+
+    public static BigDecimal getSomaValorExtracao() {
+        String caminhoArquivo = "PyModule\\dados_extraidos.xlsx";
+
+        try (FileInputStream fis = new FileInputStream((caminhoArquivo));
+             Workbook workbook = new XSSFWorkbook(fis)) {
+
+            Sheet sheet = workbook.getSheetAt(0); // primeira aba
+            Row row = sheet.getRow(1); // linha 1 (a segunda, pois é zero-based)
+            Cell cell = row.getCell(0); // coluna A
+
+            return BigDecimal.valueOf(cell.getNumericCellValue());
+        } catch (IOException e) {
+            e.fillInStackTrace();
+        }
+        return null;
     }
 
     public static String formatarValorMoeda(BigDecimal valorBigDecimal) {
