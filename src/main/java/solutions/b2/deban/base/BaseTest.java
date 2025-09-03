@@ -1,31 +1,23 @@
 package solutions.b2.deban.base;
 
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import solutions.b2.deban.utils.UtilsDados;
 
 import java.io.File;
 
 public class BaseTest implements UtilsDados {
 
-    @AfterAll
+    @BeforeAll
     public static void teardown() {
-        gerarRelatorioExcel();
+        gerarExcelExtracao();
     }
 
-    private static void gerarRelatorioExcel() {
+    private static void gerarExcelExtracao() {
         try {
-            ProcessBuilder pb = new ProcessBuilder("python", "PythonDeban/gerarRelatorioDeban.py");
+            ProcessBuilder pb = new ProcessBuilder("python", "PyModule\\Test.py");
             pb.directory(new File(System.getProperty("user.dir")));
 
-            Process process = pb.start();
-
-            int exitCode = process.waitFor();
-
-            if (exitCode != 0) {
-                System.err.println("Erro ao gerar o relatório Excel. Código de saída: " + exitCode);
-            } else {
-                System.out.println("Relatório Excel gerado com sucesso.");
-            }
+            pb.start();
         } catch (Exception e) {
             e.fillInStackTrace();
         }
