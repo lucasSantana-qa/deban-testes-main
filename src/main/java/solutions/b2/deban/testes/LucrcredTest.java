@@ -4,9 +4,11 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import solutions.b2.deban.actions.LucrcredActions;
 import solutions.b2.deban.propriedades.LucrcredProprs;
+import java.math.BigDecimal;
 
 import static solutions.b2.deban.utils.Utils.*;
 
@@ -152,5 +154,32 @@ public class LucrcredTest implements LucrcredProprs {
     @Severity(SeverityLevel.CRITICAL)
     public void testCampoCustoTarifaIntercambioFiller() {
         lucrcredActions.validarCampoPreenchido("Custo da tarifa de intercâmbio",41,53);
+    }
+
+    @Test
+    @Feature("Arquivo Lucrcred")
+    @Description("Valida se o valor contido no campo 'receita de desconto bruta' bate com o valor extraído do banco de dados ")
+    @Severity(SeverityLevel.CRITICAL)
+    public void testValorCampoReceitaTaxaDescontoFiller() {
+        BigDecimal somaValorExtracao = getSomaValorExtracao();
+        String dado = getLinha(lucrcredNomeArq, 1).substring(5, 17);
+
+        BigDecimal valor = new BigDecimal(dado);
+        BigDecimal valorFormatado = valor.movePointLeft(2);
+        Assertions.assertEquals(somaValorExtracao, valorFormatado);
+    }
+
+    @Test
+    @Feature("Arquivo Lucrcred")
+    @Description("Valida se o valor contido no campo 'custo tarifa de intercâmbio' bate com o valor extraído do banco de dados ")
+    @Severity(SeverityLevel.CRITICAL)
+    public void testValorCampoCustoTarifaIntercambioFiller() {
+        BigDecimal somaValorExtracao = getSomaValorExtracao();
+        String dado = getLinha(lucrcredNomeArq, 1).substring(41, 53);
+
+        BigDecimal valor = new BigDecimal(dado);
+        BigDecimal valorFormatado = valor.movePointLeft(2);
+        Assertions.assertEquals(somaValorExtracao, valorFormatado);
+        System.out.println(valorFormatado);
     }
 }
