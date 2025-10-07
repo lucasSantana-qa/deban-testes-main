@@ -20,7 +20,7 @@ def retornar_soma_dados_excel(arquivo_entrada,coluna_filtro, coluna_soma):
         df_resultado = pd.DataFrame({f"Soma_{coluna_soma}": [soma]})
 
         # Salvar apenas o valor em um novo arquivo
-        df_resultado.to_excel("dados_extraidos.xlsx", index=False)
+        df_resultado.to_excel("PyModule/dados_extraidos.xlsx", index=False)
 
     return soma
 
