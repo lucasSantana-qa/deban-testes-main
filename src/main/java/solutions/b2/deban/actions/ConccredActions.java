@@ -12,7 +12,7 @@ public class ConccredActions implements ConccredProps, UtilsDados {
 
     public void validarCampoBandeira() {
         List<String> dados = getDadosFiller(conccredNomeArq, 5,7);
-        assertEquals(conccredBandeirasPorLinha, dados, "");
+        assertEquals(conccredBandeirasPorLinha, dados, "Reportada bandeira incorreta");
     }
 
     public void validarCampoFuncao() {
