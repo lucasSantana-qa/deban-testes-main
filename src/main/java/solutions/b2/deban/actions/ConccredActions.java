@@ -17,7 +17,7 @@ public class ConccredActions implements ConccredProps, UtilsDados {
 
     public void validarCampoFuncao() {
         List<String> dados = getDadosFiller(conccredNomeArq, 7,8);
-        assertEquals(conccredFuncoesPorLinha, dados);
+        assertEquals(conccredFuncoesPorLinha, dados, "Reportada função incorreta");
     }
 
     public void validarCamposNaoSomados(String campo, int inicio, int fim) {
