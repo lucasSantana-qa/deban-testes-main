@@ -2,7 +2,6 @@ package solutions.b2.deban.base;
 
 import org.junit.jupiter.api.BeforeAll;
 import solutions.b2.deban.utils.UtilsDados;
-
 import java.io.File;
 
 public class BaseTest implements UtilsDados {
