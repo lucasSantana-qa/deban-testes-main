@@ -8,7 +8,7 @@ import java.io.File;
 public class BaseTest implements UtilsDados {
 
     @BeforeAll
-    public static void teardown() {
+    public static void setupRelatorioExcel() {
         gerarExcelExtracao();
     }
 
