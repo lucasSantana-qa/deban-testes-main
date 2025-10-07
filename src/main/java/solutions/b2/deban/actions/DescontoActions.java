@@ -35,7 +35,7 @@ public class DescontoActions implements DescontoProps, UtilsDados {
             int dadoTaxaMed = Integer.parseInt(dadosTaxaMed.get(i));
 
             if (dadoTaxaMed < dadoTaxaMin) {
-                fail("No registro "+ (i+1)  +" a taxa média "+ dadoTaxaMed +" é menor que a taxa mínima "+ dadoTaxaMin);
+                fail("No registro "+ (i+2)  +" a taxa média "+ dadoTaxaMed +" é menor que a taxa mínima "+ dadoTaxaMin);
             }
         }
     }

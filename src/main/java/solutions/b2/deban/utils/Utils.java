@@ -163,12 +163,7 @@ public class Utils implements UtilsDados {
     public static void validarCampoTrimestre(String nomeArq) {
         List<String> dados = getDadosFiller(nomeArq, 4, 5);
 
-        String trimEsperado = switch (getTrimestre()) {
-            case primeiro -> "1";
-            case segundo -> "2";
-            case terceiro -> "3";
-            case quarto -> "4";
-        };
+        String trimEsperado = trim;
 
         for (String dado : dados) {
             assertEquals(trimEsperado, dado);

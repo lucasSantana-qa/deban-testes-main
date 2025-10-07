@@ -40,5 +40,7 @@ build/
 /allure-report/
 /allure-history/
 /DEBAN_TESTES_MAIN_jar/
+/README.md
 /dados_extraidos.xlsx
 /PyModule/dados_extraidos.xlsx
+/.idea/
