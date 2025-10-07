@@ -2,18 +2,7 @@ package solutions.b2.deban.base;
 
 public class SetData {
 
-    public static String anoReferencia = "2025";
+    public static String anoReferencia = System.getProperty("ano");
 
-    protected static TrimestreEnum trimestre = TrimestreEnum.segundo;
-
-    public static TrimestreEnum getTrimestre() {
-        return trimestre;
-    }
-
-    public enum TrimestreEnum {
-        primeiro,
-        segundo,
-        terceiro,
-        quarto
-    }
+    public static String trim = System.getProperty("trim");
 }

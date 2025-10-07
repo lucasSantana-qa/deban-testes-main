@@ -10,7 +10,7 @@ public interface UtilsDados {
 
     String cnpjCredenciador = "17351180";
 
-    Charset formatoArq = StandardCharsets.ISO_8859_1;
+    Charset formatoArq = StandardCharsets.UTF_8;
 
     Set<String> bandeiras = Set.of("01", "02", "08");
     Set<String> funcoes = Set.of("C", "D", "E");
