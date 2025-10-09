@@ -44,3 +44,4 @@ build/
 /dados_extraidos.xlsx
 /PyModule/dados_extraidos.xlsx
 /.idea/
+/src/main/resources/transacoes_extraidas.xlsx
