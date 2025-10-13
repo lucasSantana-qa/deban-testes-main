@@ -4,7 +4,6 @@ import pandas as pd
 extracao_caminho = r"C:\Testes automatizados\DEBAN\extracao\transacoes.csv"
 saida_caminho = r"src\main\resources\transacoes_extraidas.xlsx"
 
-
 def retornar_soma_dados_excel(arquivo_entrada, coluna_filtro):
     # Lê o CSV
     df = pd.read_csv(arquivo_entrada, sep=",", decimal=".")
