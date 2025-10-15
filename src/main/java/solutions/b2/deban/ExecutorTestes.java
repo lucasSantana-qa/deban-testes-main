@@ -12,34 +12,44 @@ public class ExecutorTestes {
             Scanner s = new Scanner(System.in);
 
             System.out.println("Antes de começar as validações, insira as seguintes informações: ");
-            System.out.println("-----------------------------------------------------------------");
-            System.out.println("Qual o ano dos arquivos ?");
-            String ano = s.next();
-            System.out.println("Qual o trimestre dos arquivos ? (1,2,3 ou 4)");
-            String trim = s.next();
 
-            System.out.println("Iniciando validações");
-            ProcessBuilder pb1 = new ProcessBuilder( "cmd.exe","/c",String.format("mvn -q clean test -Dtrim=%s -Dano=%s", trim, ano));
-            pb1.directory(new File(projectDir));
+            boolean continua = false;
+            while (!continua) {
+                System.out.println("-----------------------------------------------------------------");
+                System.out.println("Qual o ano dos arquivos ?");
+                int ano = s.nextInt();
+                System.out.println("Qual o trimestre dos arquivos ? (1,2,3 ou 4)");
+                int trim = s.nextInt();
 
-            // Redireciona a saída e o erro
-            pb1.redirectErrorStream(true);
+                if (trim < 1 || trim > 4) {
+                    System.err.println("Informe um valor correto para o trimestre");
+                } else {
+                    continua = true;
+                    ProcessBuilder pb1 = new ProcessBuilder("cmd.exe", "/c", String.format("mvn clean test -Dtrim=%s -Dano=%s", trim, ano));
+                    pb1.directory(new File(projectDir));
 
-            // Inicia o processo
-            Process process = pb1.start();
+                    // Redireciona a saída e o erro
+                    pb1.redirectErrorStream(true);
 
-            // Lê a saída do processo
-            printProcessOutput(process);
+                    // Inicia o processo
+                    Process process = pb1.start();
+                    System.out.println("Iniciando validações");
 
-            ProcessBuilder pb2 = new ProcessBuilder("cmd.exe", "/c", "allure serve");
+                    // Lê a saída do processo
+                    printProcessOutput(process);
 
-            pb2.directory(new File(projectDir));
-            pb2.redirectErrorStream(true);
+                    ProcessBuilder pb2 = new ProcessBuilder("cmd.exe", "/c", "allure serve");
 
-            Process processAllure = pb2.start();
-            printProcessOutput(processAllure);
+                    pb2.directory(new File(projectDir));
+                    pb2.redirectErrorStream(true);
 
-            processAllure.waitFor();
+                    System.out.println("Gerando relatório de execução de testes");
+                    Process processAllure = pb2.start();
+                    printProcessOutput(processAllure);
+
+                    processAllure.waitFor();
+                }
+            }
 
         } catch (IOException e) {
             e.fillInStackTrace();
