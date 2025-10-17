@@ -1,5 +1,6 @@
 package solutions.b2.deban;
 
+import solutions.b2.deban.base.ConfigCaminhoArquivos;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
@@ -7,7 +8,7 @@ import java.util.Scanner;
 public class ExecutorTestes {
     public static void main(String[] args) {
         try {
-            String projectDir = "C:\\Testes automatizados\\DEBAN\\DEBAN-TESTES-MAIN";
+            String projectDir = ConfigCaminhoArquivos.getBasePath()+"\\DEBAN-TESTES-MAIN";
 
             Scanner s = new Scanner(System.in);
 
