@@ -13,7 +13,7 @@ public class BaseTest implements UtilsDados {
 
     private static void gerarExcelExtracao() {
         try {
-            ProcessBuilder pb = new ProcessBuilder("python", "PyModule\\Test.py");
+            ProcessBuilder pb = new ProcessBuilder("python", ConfigCaminhoArquivos.getBasePath()+"DEBAN-TESTES-MAIN\\Filtragem_extracao.py");
             pb.directory(new File(System.getProperty("user.dir")));
 
             pb.start();
