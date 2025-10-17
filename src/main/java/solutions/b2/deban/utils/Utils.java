@@ -5,6 +5,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import solutions.b2.deban.base.ConfigCaminhoArquivos;
 import solutions.b2.deban.base.SetData;
 
 import java.io.*;
@@ -268,15 +269,15 @@ public class Utils implements UtilsDados {
         }
     }
 
-    public static BigDecimal getSomaValorExtracao() {
-        String caminhoArquivo = "PyModule\\dados_extraidos.xlsx";
+    public static BigDecimal getVolumeExtracao(int colunaExcel) {
+        String caminhoArquivo = ConfigCaminhoArquivos.getBasePath()+"DEBAN-TESTES-MAIN\\src\\main\\resources\\transacoes_extraidas.xlsx";
 
         try (FileInputStream fis = new FileInputStream((caminhoArquivo));
              Workbook workbook = new XSSFWorkbook(fis)) {
 
             Sheet sheet = workbook.getSheetAt(0); // primeira aba
             Row row = sheet.getRow(1); // linha 1 (a segunda, pois é zero-based)
-            Cell cell = row.getCell(0); // coluna A
+            Cell cell = row.getCell(colunaExcel); // coluna A
 
             return BigDecimal.valueOf(cell.getNumericCellValue());
         } catch (IOException e) {
@@ -291,5 +292,10 @@ public class Utils implements UtilsDados {
 
     public static String formatarInteiro(Integer valor) {
         return NumberFormat.getIntegerInstance(new Locale("pt", "BR")).format(valor);
+    }
+
+    public static BigDecimal formataValorDuasCasasDecimais(String dado) {
+        BigDecimal valor = new BigDecimal(dado);
+        return valor.movePointLeft(2);
     }
 }
