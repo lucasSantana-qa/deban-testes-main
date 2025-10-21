@@ -6,7 +6,7 @@
 
     <groupId>solutions.b2.deban</groupId>
     <artifactId>DEBAN-TESTES-MAIN</artifactId>
-    <version>6.0.0-SNAPSHOT</version>
+    <version>7.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
